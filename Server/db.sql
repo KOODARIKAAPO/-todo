@@ -1,21 +1,24 @@
 
-CREATE DATABASE todo25;
+drop table if exists task;
+drop table if exists account;
 
-\c todo25
-
-
-CREATE TABLE IF NOT EXISTS task (
-  id SERIAL PRIMARY KEY,
-  description VARCHAR(255) NOT NULL
+create table task (
+  id serial primary key,
+  description varchar(255) not null
 );
 
+create table account (
+  id serial primary key,
+  email varchar(50) not null unique,
+  password varchar(255) not null
+);
 
-INSERT INTO task (description) VALUES
+insert into task (description) values
 ('Complete the project documentation'),
-('Plan team meeting agenda'),
-('Buy groceries for the week'),
-('Finish the React frontend'),
-('Push code to GitHub repository'),
-('Review project requirements'),
-('Clean workspace'),
-('Update Node.js dependencies');
+('Review the code changes'),
+('Prepare for the team meeting'),
+('Update the project timeline'),
+('Test the new features'),
+('Fix the reported bugs'),
+('Deploy the application to production'),
+('Conduct a code review with peers');

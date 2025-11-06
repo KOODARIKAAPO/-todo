@@ -1,15 +1,27 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import todoRouter from './routes/todoRouter.js'
+import userRouter from './routes/userRouter.js'
 
-const port = process.env.PORT 
+const port = process.env.PORT || 3001
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use('/',todoRouter)
+app.use('/', todoRouter)
+app.use('/user', userRouter)
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`)
+app.use((err, req, res, next) => {
+  const status = err.status || 500
+  res.status(status).json({ error: err.message || 'Internal Server Error' })
 })
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`)
+  })
+}
+
+export default app

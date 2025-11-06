@@ -5,17 +5,19 @@
   "type": "module",
   "scripts": {
     "devStart": "NODE_ENV=development nodemon index.js",
-    "test": "NODE_ENV=mocha *.test.js",
-    "testStart": "NODE_ENV= test node index.js"
+    "test": "NODE_ENV=test node -r dotenv/config ./node_modules/mocha/bin/mocha *.test.js",
+    "testStart": "NODE_ENV=test node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3"
   },
   "devDependencies": {
